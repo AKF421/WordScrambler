@@ -7,7 +7,7 @@ public class Main {
         scrambler.getScrambledWords(scrambledWords);
         for(String a : scrambledWords){
             System.out.println(a);
-            System.out.println("_________");
+            System.out.println("__________________");
             System.out.println();
             System.out.println();
 
