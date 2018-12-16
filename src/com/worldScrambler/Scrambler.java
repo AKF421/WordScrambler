@@ -7,25 +7,23 @@ import java.util.ArrayList;
 class Scrambler {
     private Scanner numberOfPositions = new Scanner(System.in);
     private Scanner wordBeforeScramble = new Scanner(System.in);
+    private ArrayList<String> userInput = new ArrayList<>();
 
-    void getScrambledWords(ArrayList<String> a) {
-
+    public void getScrambledWords(ArrayList<String> scrambledWords) {
         Random r = new Random();
         System.out.println("How many words would you like to scramble?");
         int arraySize = numberOfPositions.nextInt();
         System.out.println("Type the words you would like to scramble.");
 
-        ArrayList<String> wordsBeforeScramble = new ArrayList<>();
-
 //Adds words given by the user to an array list.
 //Those words are scrambled and then put into another array list.
 
         for (int i = 0; i < arraySize; i++) {
-            wordsBeforeScramble.add(i, wordBeforeScramble.next());
+            userInput.add(i, wordBeforeScramble.next());
         }
 
-        for (String b : wordsBeforeScramble) {
-            a.add(scramble(b, r));
+        for (String b : userInput) {
+            scrambledWords.add(scramble(b, r));
         }
     }
 
