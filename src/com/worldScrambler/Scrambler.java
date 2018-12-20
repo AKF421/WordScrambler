@@ -10,25 +10,26 @@ class Scrambler {
     private Scanner wordBeforeScramble = new Scanner(System.in);
     private ArrayList<String> userInput = new ArrayList<>();
 
-    void getScrambledWords(ArrayList<String> scrambledWords) {
+    public void getScrambledWords(ArrayList<String> scrambledWords) {
         Integer value = null;
         Random r = new Random();
         System.out.println("How many words would you like to scramble?");
         String arraySize = numberOfPositions.nextLine();
 
-        try {
-            value = Integer.valueOf(arraySize);
-        } catch (final NumberFormatException e) {
+        if(isNumeric(arraySize)){
+            value = Integer.parseInt(arraySize);
+        } else {
             System.out.println("Please try again and enter a whole number.");
             System.exit(0);
         }
+
         System.out.println("Type the words you would like to scramble.");
 
         //Adds words given by the user to an array list.
         //Those words are scrambled and then put into another array list.
         for (int i = 0; i < value; i++) {
             String originalWord = wordBeforeScramble.next();
-            if (!(isNumeric(originalWord))) {
+            if (!isNumeric(originalWord)) {
                 userInput.add(i, originalWord);
             } else {
                 System.out.println("Please try again and enter a word");
@@ -38,6 +39,12 @@ class Scrambler {
 
         for (String b : userInput) {
             scrambledWords.add(scramble(b, r));
+        }
+    }
+
+    public void printInput(){
+        for(String a : userInput){
+            System.out.println(a);
         }
     }
 
@@ -71,6 +78,9 @@ class Scrambler {
         }
     }
 
+
+    //Checks to see if the input is a number.
+    // Method to check for invalid input could be improved?
     private static boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
