@@ -10,7 +10,7 @@ class Scrambler {
     private Scanner wordBeforeScramble = new Scanner(System.in);
     private ArrayList<String> userInput = new ArrayList<>();
 
-    public void getScrambledWords(ArrayList<String> scrambledWords) {
+    void getScrambledWords(ArrayList<String> scrambledWords) {
         Integer value = null;
         Random r = new Random();
         System.out.println("How many words would you like to scramble?");
@@ -42,11 +42,25 @@ class Scrambler {
         }
     }
 
-    public void printInput(){
+    void printInput(){
         for(String a : userInput){
             System.out.println(a);
         }
     }
+
+    boolean yesOrNo(Scanner user) {
+        String answer = user.next();
+        if (answer.equals("Yes") || answer.equals("yes")) {
+            return true;
+        } else if (answer.equals("No") || answer.equals("no")) {
+            return false;
+        } else {
+            System.out.println("Please try again and type Yes or No.");
+            System.exit(0);
+        }
+        return false;
+    }
+
 
     private String scramble(String word, Random random) {
 

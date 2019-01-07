@@ -17,12 +17,11 @@ public class Main {
 
 
         System.out.println("Would you like to format the words?");
-        String answer = format.next();
+        boolean check = scrambler.yesOrNo(format);
         System.out.println("Would you like to receive the unscrambled words as well?");
-        String response = input.next();
+        boolean check1 = scrambler.yesOrNo(input);
 
-//Could be used as a method?
-        if (answer.equals("Yes") || answer.equals("yes")) {
+        if (check) {
             System.out.println("Scrambled words:");
             for (String a : scrambledWords) {
                 System.out.println(a);
@@ -30,27 +29,18 @@ public class Main {
                 System.out.println();
                 System.out.println();
             }
-        } else if (answer.equals("No") || answer.equals("no")){
-            System.out.println("Scrambled words:");
+        } else {
             for (String a : scrambledWords) {
                 System.out.println(a);
             }
-        } else {
-            System.out.println("Please try again and type Yes or No.");
-            System.exit(0);
         }
 
-            if (response.equals("Yes") || response.equals("yes")) {
+            if (check1) {
                 System.out.println();
                 scrambler.printInput();
-            } else if (response.equals("No") || response.equals("no")){
-
-            } else {
-                System.out.println("Please try again and type Yes or No.");
-                System.exit(0);
             }
 
 
-
+        }
     }
-}
+
