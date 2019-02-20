@@ -1,11 +1,11 @@
-package com.worldScrambler;
+package com.wordScrambler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.worldScrambler.CheckUserResponse.isInt;
+import static com.wordScrambler.CheckUserResponse.isWholeNumber;
 
 public class Main {
 
@@ -80,11 +80,11 @@ public class Main {
         int value;
         String arraySize = numberOfPositions.next();
 
-        if (isInt(arraySize)) {
+        if (isWholeNumber(arraySize)) {
             value = Integer.parseInt(arraySize);
             return value;
         } else {
-            System.out.println("Please try again and enter a whole number.");
+            System.err.println("Please try again and enter a whole number.");
             return userArraySize(numberOfPositions);
         }
     }

@@ -1,17 +1,17 @@
-package com.worldScrambler;
+package com.wordScrambler;
 
 import java.util.Scanner;
 
 class CheckUserResponse {
 
-    static boolean isInt(String a) {
+    static boolean isWholeNumber(String a) {
         try {
             Integer.parseInt(a);
         } catch (NumberFormatException nfe) {
             return false;
         }
 
-        return true;
+        return Integer.parseInt(a) > 0;
     }
 
     boolean yesOrNo(Scanner userResponse) {
@@ -21,7 +21,7 @@ class CheckUserResponse {
         } else if (answer.equals("NO")) {
             return false;
         } else {
-            System.out.println("Please try again and type Yes or No.");
+            System.err.println("Please try again and type Yes or No.");
             return yesOrNo(userResponse);
         }
     }

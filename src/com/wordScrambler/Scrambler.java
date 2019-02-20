@@ -1,4 +1,4 @@
-package com.worldScrambler;
+package com.wordScrambler;
 
 import java.util.Random;
 
@@ -16,13 +16,13 @@ class Scrambler {
             return word;
         }
 
-        for (char a : b){
-            if (a == first){
+        for (char a : b) {
+            if (a == first) {
                 repeatCounter++;
             }
         }
 
-        if(repeatCounter == wordLength){
+        if (repeatCounter == wordLength) {
             return word;
         }
 
