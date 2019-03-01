@@ -5,9 +5,20 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.wordScrambler.CheckUserResponse.isWholeNumber;
-
 public class Main {
+    private Random random = new Random();
+
+    private Scanner userResponse = new Scanner(System.in);
+    private Scanner numberOfPositions = new Scanner(System.in);
+    private Scanner wordBeforeScramble = new Scanner(System.in);
+
+    private Scrambler scrambler = new Scrambler();
+    private CheckUserResponse checkUserResponse = new CheckUserResponse();
+
+    private ArrayList<String> scrambledWords = new ArrayList<>();
+    private ArrayList<String> unscrambledWords = new ArrayList<>();
+
+
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -16,33 +27,20 @@ public class Main {
 
     private void init() {
 
-        Random random = new Random();
-        Scanner userResponse = new Scanner(System.in);
-        Scanner numberOfPositions = new Scanner(System.in);
-        Scanner wordBeforeScramble = new Scanner(System.in);
-
-        Scrambler scrambler = new Scrambler();
-        CheckUserResponse checkUserResponse = new CheckUserResponse();
-
-        ArrayList<String> scrambledWords = new ArrayList<>();
-        ArrayList<String> unscrambledWords = new ArrayList<>();
-
         System.out.println("How many words would you like to scramble?");
         int value = userArraySize(numberOfPositions);
 
-        System.out.println("Type the words you would like to scramble.");
+        System.out.println("\nType the words you would like to scramble.");
         for (int i = 0; i < value; i++) {
             String originalWord = wordBeforeScramble.next();
             unscrambledWords.add(i, originalWord);
         }
 
-        System.out.println();
-        System.out.println("Would you like to shuffle the positions first?");
+        System.out.println("\nWould you like to shuffle the positions first?");
 
         if (checkUserResponse.yesOrNo(userResponse)) {
             Collections.shuffle(unscrambledWords);
-            System.out.println("Here is the new list.");
-            System.out.println();
+            System.out.println("\nHere is the new list.\n");
             for (String a : unscrambledWords) {
                 System.out.println(a);
             }
@@ -52,23 +50,16 @@ public class Main {
             scrambledWords.add(scrambler.scramble(a, random));
         }
 
-        System.out.println();
-        System.out.println("Would you like to format the words?");
+        System.out.println("\nWould you like to format the words?");
 
         if (checkUserResponse.yesOrNo(userResponse)) {
-            System.out.println();
-            System.out.println("Scrambled words:");
-            System.out.println();
-            for (String a : scrambledWords) {
-                System.out.println(a);
-                System.out.println("__________________");
-                System.out.println();
-                System.out.println();
+            System.out.println("\nScrambled words:\n");
+            for (String word : scrambledWords) {
+                System.out.println(word);
+                System.out.println("__________________\n\n");
             }
         } else {
-            System.out.println();
-            System.out.println("Scrambled words: ");
-            System.out.println();
+            System.out.println("\nScrambled words:\n");
             for (String a : scrambledWords) {
                 System.out.println(a);
             }
@@ -80,7 +71,7 @@ public class Main {
         int value;
         String arraySize = numberOfPositions.next();
 
-        if (isWholeNumber(arraySize)) {
+        if (CheckUserResponse.isWholeNumber(arraySize)) {
             value = Integer.parseInt(arraySize);
             return value;
         } else {

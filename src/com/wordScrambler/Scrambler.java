@@ -35,8 +35,7 @@ class Scrambler {
 
         String scrambledWord = new String(b);
 
-//If the scrambled word is equal to the original word,
-//the method runs again until the scrambled word is different from the original.
+//      If the scrambled word is equal to the original word, the method runs again
         if (scrambledWord.equals(word)) {
             return scramble(word, random);
         } else {

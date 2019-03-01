@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 class CheckUserResponse {
 
+//    Checks if the user input is a positive whole number.
     static boolean isWholeNumber(String a) {
         try {
             Integer.parseInt(a);
@@ -21,6 +22,7 @@ class CheckUserResponse {
         } else if (answer.equals("NO")) {
             return false;
         } else {
+//            Allows the user to try again until they type yes or no.
             System.err.println("Please try again and type Yes or No.");
             return yesOrNo(userResponse);
         }
