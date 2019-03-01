@@ -8,9 +8,7 @@ import java.util.Scanner;
 public class Main {
     private Random random = new Random();
 
-    private Scanner userResponse = new Scanner(System.in);
-    private Scanner numberOfPositions = new Scanner(System.in);
-    private Scanner wordBeforeScramble = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
 
     private Scrambler scrambler = new Scrambler();
     private CheckUserResponse checkUserResponse = new CheckUserResponse();
@@ -28,17 +26,17 @@ public class Main {
     private void init() {
 
         System.out.println("How many words would you like to scramble?");
-        int value = userArraySize(numberOfPositions);
+        int value = userArraySize(input);
 
         System.out.println("\nType the words you would like to scramble.");
         for (int i = 0; i < value; i++) {
-            String originalWord = wordBeforeScramble.next();
+            String originalWord = input.next();
             unscrambledWords.add(i, originalWord);
         }
 
         System.out.println("\nWould you like to shuffle the positions first?");
 
-        if (checkUserResponse.yesOrNo(userResponse)) {
+        if (checkUserResponse.yesOrNo(input)) {
             Collections.shuffle(unscrambledWords);
             System.out.println("\nHere is the new list.\n");
             for (String a : unscrambledWords) {
@@ -52,7 +50,7 @@ public class Main {
 
         System.out.println("\nWould you like to format the words?");
 
-        if (checkUserResponse.yesOrNo(userResponse)) {
+        if (checkUserResponse.yesOrNo(input)) {
             System.out.println("\nScrambled words:\n");
             for (String word : scrambledWords) {
                 System.out.println(word);

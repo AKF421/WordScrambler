@@ -6,36 +6,32 @@ class Scrambler {
 
     String scramble(String word, Random random) {
 
-        char[] b = word.toCharArray();
-        char first = b[0];
+        char[] inputArray = word.toCharArray();
+        char first = inputArray[0];
         int repeatCounter = 0;
-        int wordLength;
-        if (b.length > 1) {
-            wordLength = b.length;
-        } else {
-            return word;
-        }
+        int wordLength = inputArray.length;
 
-        for (char a : b) {
+        for (char a : inputArray) {
             if (a == first) {
                 repeatCounter++;
             }
         }
 
+        for (int currentLetter = 0; currentLetter < wordLength; currentLetter++) {
+            int randomLetter = random.nextInt(wordLength);
+            char storedLetter = inputArray[currentLetter];
+            inputArray[currentLetter] = inputArray[randomLetter];
+            inputArray[randomLetter] = storedLetter;
+        }
+
+        String scrambledWord = new String(inputArray);
+
+//      If the scrambled word is equal to the original word, the method runs again
+
         if (repeatCounter == wordLength) {
             return word;
         }
 
-        for (int i = 0; i < wordLength; i++) {
-            int j = random.nextInt(wordLength);
-            char temp = b[i];
-            b[i] = b[j];
-            b[j] = temp;
-        }
-
-        String scrambledWord = new String(b);
-
-//      If the scrambled word is equal to the original word, the method runs again
         if (scrambledWord.equals(word)) {
             return scramble(word, random);
         } else {
