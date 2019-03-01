@@ -6,62 +6,78 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    private static boolean repeat;
     private Random random = new Random();
-
     private Scanner input = new Scanner(System.in);
-
     private Scrambler scrambler = new Scrambler();
     private CheckUserResponse checkUserResponse = new CheckUserResponse();
-
     private ArrayList<String> scrambledWords = new ArrayList<>();
     private ArrayList<String> unscrambledWords = new ArrayList<>();
-
-
 
     public static void main(String[] args) {
         Main main = new Main();
         main.init();
+
+        if (repeat) {
+            main(args);
+        }
     }
 
     private void init() {
 
-        System.out.println("How many words would you like to scramble?");
-        int value = userArraySize(input);
+        System.out.println("\nHow many words would you like to scramble?");
+        int arraySize = userArraySize(input);
 
-        System.out.println("\nType the words you would like to scramble.");
-        for (int i = 0; i < value; i++) {
+        if (arraySize == 1) {
+            System.out.println("\nType the word you would like to scramble.");
+        } else {
+            System.out.println("\nType the words you would like to scramble.");
+        }
+
+        for (int i = 0; i < arraySize; i++) {
             String originalWord = input.next();
             unscrambledWords.add(i, originalWord);
         }
 
-        System.out.println("\nWould you like to shuffle the positions first?");
 
-        if (checkUserResponse.yesOrNo(input)) {
-            Collections.shuffle(unscrambledWords);
-            System.out.println("\nHere is the new list.\n");
-            for (String a : unscrambledWords) {
-                System.out.println(a);
+        if (arraySize > 1) {
+            System.out.println("\nWould you like to shuffle the words first?");
+            if (checkUserResponse.yesOrNo(input)) {
+                Collections.shuffle(unscrambledWords);
+                System.out.println("\nHere is the new list.\n");
+                for (String a : unscrambledWords) {
+                    System.out.println(a);
+                }
             }
-        }
 
-        for (String a : unscrambledWords) {
-            scrambledWords.add(scrambler.scramble(a, random));
-        }
+            for (String a : unscrambledWords) {
+                scrambledWords.add(scrambler.scramble(a, random));
+            }
 
-        System.out.println("\nWould you like to format the words?");
+            System.out.println("\nWould you like to format the words?");
 
-        if (checkUserResponse.yesOrNo(input)) {
-            System.out.println("\nScrambled words:\n");
-            for (String word : scrambledWords) {
-                System.out.println(word);
-                System.out.println("__________________\n\n");
+            if (checkUserResponse.yesOrNo(input)) {
+                System.out.println("\nScrambled words:\n");
+                for (String word : scrambledWords) {
+                    System.out.println(word);
+                    System.out.println("__________________\n\n");
+                }
+            } else {
+                System.out.println("\nScrambled words:\n");
+                for (String a : scrambledWords) {
+                    System.out.println(a);
+                }
             }
         } else {
-            System.out.println("\nScrambled words:\n");
-            for (String a : scrambledWords) {
-                System.out.println(a);
-            }
+            scrambledWords.add(scrambler.scramble(unscrambledWords.get(0), random));
+            System.out.println("\n" + scrambledWords.get(0));
         }
+
+        System.out.println("\nWould you like to scramble more words?");
+        if (checkUserResponse.yesOrNo(input)) {
+            repeat = true;
+        }
+
 
     }
 
