@@ -18,9 +18,6 @@ public class Main {
         Main main = new Main();
         main.init();
 
-        if (repeat) {
-            main(args);
-        }
     }
 
     private void init() {
@@ -76,6 +73,10 @@ public class Main {
         System.out.println("\nWould you like to scramble more words?");
         if (checkUserResponse.yesOrNo(input)) {
             repeat = true;
+        }
+
+        if (repeat) {
+            init();
         }
 
 
