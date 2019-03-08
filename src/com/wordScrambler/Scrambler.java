@@ -1,7 +1,6 @@
 package com.wordScrambler;
 
-import java.util.Random;
-//import java.util.ArrayList;
+import java.util.*;
 
 class Scrambler {
 
@@ -30,6 +29,11 @@ class Scrambler {
         } else {
             return scrambledWord;
         }
+    }
+
+    ArrayList<String> shuffle(ArrayList<String> unscrambledWords, Random random){
+
+        return unscrambledWords;
     }
 
 }
