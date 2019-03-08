@@ -1,6 +1,7 @@
 package com.wordScrambler;
 
 import java.util.Random;
+//import java.util.ArrayList;
 
 class Scrambler {
 
@@ -8,14 +9,14 @@ class Scrambler {
 
         char[] inputArray = word.toCharArray();
         char first = inputArray[0];
-        int repeatCounter = 0;
+//        int repeatCounter = 0;
         int wordLength = inputArray.length;
-
-        for (char a : inputArray) {
-            if (a == first) {
-                repeatCounter++;
-            }
-        }
+//
+//        for (char a : inputArray) {
+//            if (a == first) {
+//                repeatCounter++;
+//            }
+//        }
 
         for (int currentLetter = 0; currentLetter < wordLength; currentLetter++) {
             int randomLetter = random.nextInt(wordLength);
@@ -28,9 +29,9 @@ class Scrambler {
 
 //      If the scrambled word is equal to the original word, the method runs again
 
-        if (repeatCounter == wordLength) {
-            return word;
-        }
+//        if (repeatCounter == wordLength) {
+//            return word;
+//        }
 
         if (scrambledWord.equals(word)) {
             return scramble(word, random);

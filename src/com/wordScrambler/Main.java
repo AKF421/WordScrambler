@@ -36,7 +36,23 @@ public class Main {
 
         for (int i = 0; i < arraySize; i++) {
             String originalWord = input.next();
-            unscrambledWords.add(i, originalWord);
+            char[] check = originalWord.toCharArray();
+            int repeatCounter = 0;
+            char first = check[0];
+            int length = check.length;
+
+            for (char a : check) {
+                if (a == first) {
+                    repeatCounter++;
+                }
+            }
+
+            if (repeatCounter == length){
+                System.err.println("\nPlease enter a word that can be scrambled.\n");
+                i -= 1;
+            } else {
+                unscrambledWords.add(i, originalWord);
+            }
         }
 
 
@@ -45,8 +61,13 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
                 Collections.shuffle(unscrambledWords);
                 System.out.println("\nHere is the new list.\n");
-                for (String a : unscrambledWords) {
-                    System.out.println(a);
+                for (String word : unscrambledWords) {
+                    System.out.println(word);
+                }
+            } else {
+                System.out.println("\nUnscrambled Words:\n");
+                for (String word : unscrambledWords){
+                    System.out.println(word);
                 }
             }
 
