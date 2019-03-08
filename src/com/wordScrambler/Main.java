@@ -17,13 +17,12 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         main.init();
-
     }
 
     private void init() {
 
         System.out.println("\nHow many words would you like to scramble?");
-        int arraySize = userArraySize(input);
+        int arraySize = checkUserResponse.userArraySize(input);
 
         if (arraySize == 1) {
             System.out.println("\nType the word you would like to scramble.");
@@ -35,16 +34,16 @@ public class Main {
             String originalWord = input.next();
             char[] check = originalWord.toCharArray();
             int repeatCounter = 0;
-            char first = check[0];
-            int length = check.length;
+            char firstLetter = check[0];
+            int wordLength = check.length;
 
             for (char a : check) {
-                if (a == first) {
+                if (a == firstLetter) {
                     repeatCounter++;
                 }
             }
 
-            if (repeatCounter == length){
+            if (repeatCounter == wordLength) {
                 System.err.println("\nPlease enter a word that can be scrambled.\n");
                 i -= 1;
             } else {
@@ -63,13 +62,13 @@ public class Main {
                 }
             } else {
                 System.out.println("\nUnscrambled Words:\n");
-                for (String word : unscrambledWords){
+                for (String word : unscrambledWords) {
                     System.out.println(word);
                 }
             }
 
-            for (String a : unscrambledWords) {
-                scrambledWords.add(scrambler.scramble(a, random));
+            for (String word : unscrambledWords) {
+                scrambledWords.add(scrambler.scramble(word, random));
             }
 
             System.out.println("\nWould you like to format the words?");
@@ -82,8 +81,8 @@ public class Main {
                 }
             } else {
                 System.out.println("\nScrambled words:\n");
-                for (String a : scrambledWords) {
-                    System.out.println(a);
+                for (String word : scrambledWords) {
+                    System.out.println(word);
                 }
             }
         } else {
@@ -103,17 +102,5 @@ public class Main {
 
     }
 
-    private int userArraySize(Scanner numberOfPositions) {
-        int value;
-        String arraySize = numberOfPositions.next();
-
-        if (CheckUserResponse.isWholeNumber(arraySize)) {
-            value = Integer.parseInt(arraySize);
-            return value;
-        } else {
-            System.err.println("Please try again and enter a whole number.");
-            return userArraySize(numberOfPositions);
-        }
-    }
 }
 

@@ -7,17 +7,12 @@ class Scrambler {
 
     String scramble(String word, Random random) {
 
+        // Splits up the word into a char array
         char[] inputArray = word.toCharArray();
-        char first = inputArray[0];
-//        int repeatCounter = 0;
-        int wordLength = inputArray.length;
-//
-//        for (char a : inputArray) {
-//            if (a == first) {
-//                repeatCounter++;
-//            }
-//        }
 
+        int wordLength = inputArray.length;
+
+        // Shuffles the chars in the array
         for (int currentLetter = 0; currentLetter < wordLength; currentLetter++) {
             int randomLetter = random.nextInt(wordLength);
             char storedLetter = inputArray[currentLetter];
@@ -25,14 +20,11 @@ class Scrambler {
             inputArray[randomLetter] = storedLetter;
         }
 
+        // Turns the modified char array back into a string
         String scrambledWord = new String(inputArray);
 
-//      If the scrambled word is equal to the original word, the method runs again
 
-//        if (repeatCounter == wordLength) {
-//            return word;
-//        }
-
+        // If the scrambled word is the same as the original, the process will repeat
         if (scrambledWord.equals(word)) {
             return scramble(word, random);
         } else {
