@@ -31,9 +31,4 @@ class Scrambler {
         }
     }
 
-    ArrayList<String> shuffle(ArrayList<String> unscrambledWords, Random random){
-
-        return unscrambledWords;
-    }
-
 }

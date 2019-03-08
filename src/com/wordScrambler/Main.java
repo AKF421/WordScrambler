@@ -1,9 +1,11 @@
 package com.wordScrambler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
-    private static boolean repeat;
     private Random random = new Random();
     private Scanner input = new Scanner(System.in);
     private Scrambler scrambler = new Scrambler();
@@ -88,9 +90,7 @@ public class Main {
         }
 
         System.out.println("\nWould you like to scramble more words?");
-        if (checkUserResponse.yesOrNo(input)) {
-            repeat = true;
-        }
+       boolean repeat = checkUserResponse.yesOrNo(input);
 
         if (repeat) {
             unscrambledWords.clear();
