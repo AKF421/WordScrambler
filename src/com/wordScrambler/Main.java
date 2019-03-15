@@ -10,6 +10,7 @@ public class Main {
     private Scanner input = new Scanner(System.in);
     private Scrambler scrambler = new Scrambler();
     private CheckUserResponse checkUserResponse = new CheckUserResponse();
+    private Shuffler shuffler = new Shuffler();
     private ArrayList<String> scrambledWords = new ArrayList<>();
     private ArrayList<String> unscrambledWords = new ArrayList<>();
     private ArrayList<String> clues = new ArrayList<>();
@@ -56,7 +57,14 @@ public class Main {
             System.out.println("\nWould you like to shuffle the words first?");
             if (checkUserResponse.yesOrNo(input)) {
 
-                Collections.shuffle(unscrambledWords);
+//                Collections.shuffle(unscrambledWords);
+                shuffler.shuffle(unscrambledWords);
+                if (shuffler.shuffle(unscrambledWords) == null) {
+                    //add recursion
+                    System.err.println("u sick100");
+
+                    System.exit(0);
+                }
                 System.out.println("\nHere is the new list.\n");
                 for (String word : unscrambledWords) {
                     System.out.println(word);
@@ -73,7 +81,7 @@ public class Main {
             }
 
             System.out.println("\nWould you like to provide a clue for each word?");
-            if (checkUserResponse.yesOrNo(input)){
+            if (checkUserResponse.yesOrNo(input)) {
                 for (int i = 0; i <= unscrambledWords.size(); i++) {
                     clues.add(input.nextLine());
                 }
@@ -86,7 +94,7 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
                 System.out.println("\nScrambled words:\n");
                 for (int i = 0; i < unscrambledWords.size(); i++) {
-                    System.out.println(clues.get(i+1));
+                    System.out.println(clues.get(i + 1));
                     System.out.println(scrambledWords.get(i));
                     System.out.println("__________________\n");
                 }
@@ -102,7 +110,7 @@ public class Main {
         }
 
         System.out.println("\nWould you like to scramble more words?");
-       boolean repeat = checkUserResponse.yesOrNo(input);
+        boolean repeat = checkUserResponse.yesOrNo(input);
 
         if (repeat) {
             unscrambledWords.clear();
