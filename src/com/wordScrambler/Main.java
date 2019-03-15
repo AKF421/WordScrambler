@@ -12,6 +12,7 @@ public class Main {
     private CheckUserResponse checkUserResponse = new CheckUserResponse();
     private ArrayList<String> scrambledWords = new ArrayList<>();
     private ArrayList<String> unscrambledWords = new ArrayList<>();
+    private ArrayList<String> clues = new ArrayList<>();
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -54,6 +55,7 @@ public class Main {
         if (arraySize > 1) {
             System.out.println("\nWould you like to shuffle the words first?");
             if (checkUserResponse.yesOrNo(input)) {
+
                 Collections.shuffle(unscrambledWords);
                 System.out.println("\nHere is the new list.\n");
                 for (String word : unscrambledWords) {
@@ -70,13 +72,23 @@ public class Main {
                 scrambledWords.add(scrambler.scramble(word, random));
             }
 
+            System.out.println("\nWould you like to provide a clue for each word?");
+            if (checkUserResponse.yesOrNo(input)){
+                for (int i = 0; i <= unscrambledWords.size(); i++) {
+                    clues.add(input.nextLine());
+                }
+                System.out.println(clues);
+            }
+
+
             System.out.println("\nWould you like to format the words?");
 
             if (checkUserResponse.yesOrNo(input)) {
                 System.out.println("\nScrambled words:\n");
-                for (String word : scrambledWords) {
-                    System.out.println(word);
-                    System.out.println("__________________\n\n");
+                for (int i = 0; i < unscrambledWords.size(); i++) {
+                    System.out.println(clues.get(i+1));
+                    System.out.println(scrambledWords.get(i));
+                    System.out.println("__________________\n");
                 }
             } else {
                 System.out.println("\nScrambled words:\n");
@@ -95,6 +107,7 @@ public class Main {
         if (repeat) {
             unscrambledWords.clear();
             scrambledWords.clear();
+            clues.clear();
             init();
 
         }
