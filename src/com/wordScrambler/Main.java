@@ -59,7 +59,9 @@ public class Main {
 
 //                Collections.shuffle(unscrambledWords);
                 shuffler.shuffle(unscrambledWords);
-
+                if(shuffler.shuffle(unscrambledWords) == null){
+                    //add recursion
+                }
                 System.out.println("\nHere is the new list.\n");
                 for (String word : unscrambledWords) {
                     System.out.println(word);

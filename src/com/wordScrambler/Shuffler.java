@@ -22,6 +22,11 @@ public class Shuffler {
             currentIncrement++;
 
         }
+
+
+        if(forwards(storageArray, words)){
+            return null;
+        }
         return words;
     }
 
@@ -36,10 +41,7 @@ public class Shuffler {
                     sameness++;
                 }
             }
-            if(sameness == starting.size() -1){
-                return true;
-            }
-            return false;
+            return sameness == starting.size() -1;
         }
 
     }
