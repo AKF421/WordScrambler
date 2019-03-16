@@ -6,7 +6,7 @@ import java.util.Random;
 public class Shuffler {
     ArrayList<String> shuffle(ArrayList<String> words) {
         int currentIncrement = 0;
-        ;
+        int repeat = 0;
         Random rand = new Random();
         ArrayList<String> storageArray = new ArrayList<>();
         for (int i = 0; i < words.size() - 1; i++) {
@@ -24,9 +24,10 @@ public class Shuffler {
         }
 
 
-        if(forwards(storageArray, words)){
-            return null;
-        }
+        if(forwards(storageArray, words) && repeat < 2){
+            repeat++;
+            return shuffle(words);
+        }else if(forwards(storageArray, words) && repeat == 2)
         return words;
     }
 
