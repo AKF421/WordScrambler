@@ -18,7 +18,6 @@ public class Shuffler {
             currentIncrement++;
 
         }
-        System.out.println(words);
         return words;
     }
 }
