@@ -10,6 +10,7 @@ public class Main {
     private Scanner input = new Scanner(System.in);
     private Scrambler scrambler = new Scrambler();
     private CheckUserResponse checkUserResponse = new CheckUserResponse();
+    private Shuffler shuffler = new Shuffler();
     private ArrayList<String> scrambledWords = new ArrayList<>();
     private ArrayList<String> unscrambledWords = new ArrayList<>();
     private ArrayList<String> clues = new ArrayList<>();
@@ -56,7 +57,9 @@ public class Main {
             System.out.println("\nWould you like to shuffle the words first?");
             if (checkUserResponse.yesOrNo(input)) {
 
-                Collections.shuffle(unscrambledWords);
+//                Collections.shuffle(unscrambledWords);
+                shuffler.shuffle(unscrambledWords);
+
                 System.out.println("\nHere is the new list.\n");
                 for (String word : unscrambledWords) {
                     System.out.println(word);
