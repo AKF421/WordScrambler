@@ -17,7 +17,7 @@ class CheckUserResponse {
 
     boolean yesOrNo(Scanner userResponse) {
         String answer = userResponse.next().toUpperCase();
-        if (answer.equals("YES")) {
+        if (answer.equals("YES") || answer.equals("YEET")) {
             return true;
         } else if (answer.equals("NO")) {
             return false;

@@ -73,11 +73,12 @@ public class Main {
             }
 
             System.out.println("\nWould you like to provide a clue for each word?");
-            if (checkUserResponse.yesOrNo(input)){
-                for (int i = 0; i <= unscrambledWords.size(); i++) {
-                    clues.add(input.nextLine());
+            if (checkUserResponse.yesOrNo(input)) {
+                Scanner clueInput = new Scanner(System.in);
+                for (int i = 0; i < arraySize; i++) {
+                    clues.add(clueInput.nextLine());
+                    System.out.println(clues);
                 }
-                System.out.println(clues);
             }
 
 
@@ -86,7 +87,7 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
                 System.out.println("\nScrambled words:\n");
                 for (int i = 0; i < unscrambledWords.size(); i++) {
-                    System.out.println(clues.get(i+1));
+                    System.out.println(clues.get(i));
                     System.out.println(scrambledWords.get(i));
                     System.out.println("__________________\n");
                 }
@@ -102,7 +103,7 @@ public class Main {
         }
 
         System.out.println("\nWould you like to scramble more words?");
-       boolean repeat = checkUserResponse.yesOrNo(input);
+        boolean repeat = checkUserResponse.yesOrNo(input);
 
         if (repeat) {
             unscrambledWords.clear();

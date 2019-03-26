@@ -13,6 +13,7 @@ class Scrambler {
 
         // Shuffles the chars in the array
         for (int currentLetter = 0; currentLetter < wordLength; currentLetter++) {
+
             int randomLetter = random.nextInt(wordLength);
             char storedLetter = inputArray[currentLetter];
             inputArray[currentLetter] = inputArray[randomLetter];
