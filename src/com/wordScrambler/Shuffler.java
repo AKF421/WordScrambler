@@ -24,7 +24,6 @@ public class Shuffler {
             storageArray.add(i, words.get(i));
         }
 
-        //shuffles the things around
         for (int s = 0; s < words.size() - 1; s++) {
             int positiion = rand.nextInt(words.size());
 
