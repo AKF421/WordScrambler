@@ -1,5 +1,7 @@
 package com.wordScrambler;
 
+import org.omg.CORBA.SystemException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -58,12 +60,10 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
 
 //                Collections.shuffle(unscrambledWords);
-                shuffler.shuffle(unscrambledWords);
-                if (shuffler.shuffle(unscrambledWords) == null) {
-                    //add recursion
-                    System.err.println("u sick100");
-
-                    System.exit(0);
+                if(shuffler.shuffle(unscrambledWords) == null){
+                    System.err.println("Please enter values that are not the same");
+                    Main main = new Main();
+                    main.init();
                 }
                 System.out.println("\nHere is the new list.\n");
                 for (String word : unscrambledWords) {
