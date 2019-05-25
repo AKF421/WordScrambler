@@ -2,6 +2,7 @@ package com.wordScrambler;
 
 import org.omg.CORBA.SystemException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -60,15 +61,16 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
 
 //                Collections.shuffle(unscrambledWords);
-                if(shuffler.shuffle(unscrambledWords) == null){
-                    System.err.println("Please enter values that are not the same");
-                    Main main = new Main();
-                    main.init();
+                ArrayList<String> shuffleCheck = shuffler.shuffle(unscrambledWords);
+                if(shuffler.shuffle(unscrambledWords).get(0) == "Failed"){
+                    System.err.println("Please enter non-similar words");
+                }else{
+                    System.out.println("\nHere is the new list.\n");
+                    for (String word : shuffleCheck) {
+                        System.out.println(word);
+                    }
                 }
-                System.out.println("\nHere is the new list.\n");
-                for (String word : unscrambledWords) {
-                    System.out.println(word);
-                }
+
             } else {
                 System.out.println("\nUnscrambled Words:\n");
                 for (String word : unscrambledWords) {

@@ -11,9 +11,11 @@ public class Shuffler {
 
     int repeat;
     int[] repeatStore = new int[1];
+    ArrayList<String> failSafe = new ArrayList<>(1);
 
     ArrayList<String> shuffle(ArrayList<String> words) {
-
+        //"Failed" == the process failed
+        failSafe.add("Failed");
         int currentIncrement = 0;
         Random rand = new Random();
 
@@ -35,16 +37,17 @@ public class Shuffler {
 
         }
 
-        if (forwardCheck(storageArray, words) || backwardsCheck(storageArray, words)) {
+        if (forwardCheck(storageArray, words)) {
             if (repeatStore[0] == 0) {
                 repeat++;
                 repeatStore[0] = repeat;
                 return shuffle(words);
             } else {
-                return null;
+                return failSafe;
             }
         }
         return words;
+
     }
 
 
@@ -62,19 +65,7 @@ public class Shuffler {
         }
     }
 
-    public boolean backwardsCheck(ArrayList<String> start, ArrayList<String> end) {
-        int backSimilarity = 0;
-        if (start.size() != end.size()) {
-            return true;
-        } else {
-            for (int b = start.size() - 1; b > 0; b++) {
-                if (start.get(b) == end.get(b)) {
-                    backSimilarity++;
-                }
-            }
-            return backSimilarity == start.size() - 1;
-        }
-    }
+
 
 }
 
