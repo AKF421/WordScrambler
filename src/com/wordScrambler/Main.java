@@ -1,5 +1,6 @@
 package com.wordScrambler;
 
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import org.omg.CORBA.SystemException;
 
 import java.lang.reflect.Array;
@@ -17,6 +18,8 @@ public class Main {
     private ArrayList<String> scrambledWords = new ArrayList<>();
     private ArrayList<String> unscrambledWords = new ArrayList<>();
     private ArrayList<String> clues = new ArrayList<>();
+    private int shuffleFail = 0;
+    private boolean checkShuffle;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -61,12 +64,20 @@ public class Main {
             if (checkUserResponse.yesOrNo(input)) {
 
 //                Collections.shuffle(unscrambledWords);
-                ArrayList<String> shuffleCheck = shuffler.shuffle(unscrambledWords);
-                if(shuffler.shuffle(unscrambledWords).get(0) == "Failed"){
-                    System.err.println("Please enter non-similar words");
+                for(int c = 0; c < shuffler.shuffle(unscrambledWords).size() -1; c++){
+                    if(shuffler.shuffle(unscrambledWords).get(c) == unscrambledWords.get(c)){
+                        shuffleFail++;
+                    }
+                    if(shuffleFail == shuffler.shuffle(unscrambledWords).size() -1){
+                        checkShuffle = true;
+                    }
+
+                }
+                if(checkShuffle){
+                    System.err.println("Please enter non=similar words");
                 }else{
-                    System.out.println("\nHere is the new list.\n");
-                    for (String word : shuffleCheck) {
+                    System.out.println("\nThe Dang List is:\n");
+                    for(String word: shuffler.shuffle(unscrambledWords)){
                         System.out.println(word);
                     }
                 }
