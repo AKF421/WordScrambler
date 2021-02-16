@@ -22,7 +22,6 @@ public class Main {
 
     private void init() {
 
-        System.out.println("\nHow many words would you like to scramble?");
         int arraySize = checkUserResponse.userArraySize(input);
 
         if (arraySize == 1) {
