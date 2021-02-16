@@ -11,20 +11,22 @@ class Scrambler {
 
         int wordLength = inputArray.length;
 
-        // Shuffles the chars in the array
+        // Shuffles the chars in inputArray
         for (int currentLetter = 0; currentLetter < wordLength; currentLetter++) {
 
             int randomLetter = random.nextInt(wordLength);
             char storedLetter = inputArray[currentLetter];
+
+            // Swaps currentLetter and randomLetter
             inputArray[currentLetter] = inputArray[randomLetter];
             inputArray[randomLetter] = storedLetter;
         }
 
-        // Turns the modified char array back into a string
+        // Turns the scrambled char array back into a string
         String scrambledWord = new String(inputArray);
 
 
-        // If the scrambled word is the same as the original, the process will repeat
+        // If the scrambled word is the same as the original, the process will repeat using recursion
         if (scrambledWord.equals(word)) {
             return scramble(word, random);
         } else {

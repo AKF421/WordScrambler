@@ -22,7 +22,7 @@ class CheckUserResponse {
         } else if (answer.equals("NO")) {
             return false;
         } else {
-            // Allows the user to try again until they type yes or no.
+            // Retries until a valid response is given
             System.err.println("Please try again and type Yes or No.");
             return yesOrNo(userResponse);
         }
@@ -36,6 +36,7 @@ class CheckUserResponse {
             value = Integer.parseInt(arraySize);
             return value;
         } else {
+            // Retries until a valid response is given
             System.err.println("Please try again and enter a whole number.");
             return userArraySize(numberOfPositions);
         }
